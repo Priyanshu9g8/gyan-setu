@@ -21,6 +21,5 @@ app.jwt.expiration-millis=31536000000
 # ================= CORS =================
 app.cors.allowed-origins=http://localhost:5173
 
-# ================= GOOGLE AI =================
-# Get your key from https://aistudio.google.com/
-google.api.key=YOUR_GOOGLE_AI_KEY
+# ================= GROQ AI =================
+groq.api.key=YOUR_GROQ_API_KEY

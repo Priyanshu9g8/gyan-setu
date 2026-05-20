@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import { useTranslation } from "react-i18next"
+import api from "../api/axios"
 
 export default function AITeacherWidget(){
 
@@ -27,19 +28,9 @@ export default function AITeacherWidget(){
 
         try{
 
-            const res = await fetch("http://localhost:8080/api/ai/ask",{
-                method:"POST",
-                headers:{
-                    "Content-Type":"application/json"
-                },
-                body:JSON.stringify({question})
-            })
+            const res = await api.post("/ai/ask", { question })
 
-            if(!res.ok) throw new Error("Server error " + res.status)
-
-            const data = await res.json()
-
-            const aiMessage = { role:"ai", text:data.answer || "No response received." }
+            const aiMessage = { role:"ai", text:res.data.answer || "No response received." }
 
             setMessages(prev => [...prev,aiMessage])
 

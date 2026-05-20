@@ -13,10 +13,10 @@ public class AITeacherService {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     
-    @Value("${google.api.key:}") // Use same key or separate one as needed
+    @Value("${groq.api.key:}")
     private String apiKey;
 
-    public AITeacherService(@Value("${google.api.key:}") String apiKey) {
+    public AITeacherService(@Value("${groq.api.key:}") String apiKey) {
         this.webClient = WebClient.builder()
                 .baseUrl("https://api.groq.com/openai/v1")
                 .defaultHeader("Authorization", "Bearer " + apiKey)
