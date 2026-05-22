@@ -66,8 +66,8 @@ public class ExamController {
                 return ResponseEntity.badRequest().body(Map.of("message", "Topic is required"));
             if (classLevel == null || classLevel.isBlank())
                 return ResponseEntity.badRequest().body(Map.of("message", "Class level is required"));
-            if (questionCount < 1 || questionCount > 50)
-                return ResponseEntity.badRequest().body(Map.of("message", "Question count must be between 1 and 50"));
+            if (questionCount < 1 || questionCount > 20)
+                return ResponseEntity.badRequest().body(Map.of("message", "Question count must be between 1 and 20"));
             if (timeLimitMins < 1 || timeLimitMins > 180)
                 return ResponseEntity.badRequest().body(Map.of("message", "Time limit must be between 1 and 180 minutes"));
 
@@ -75,9 +75,9 @@ public class ExamController {
             User teacher = userRepository.findByUsername(auth.getName())
                     .orElseThrow(() -> new IllegalArgumentException("Authenticated teacher not found"));
 
-            // Generate pool (3× the student count; min 15, max 90)
-            // Allows up to 30 questions per student with guaranteed unique subsets
-            int poolSize = Math.min(Math.max(questionCount * 3, 15), 90);
+            // Generate pool (2× the question count; min 10, max 35)
+            // Capped at 35 to ensure AI generation safely fits within the strict 4096 Groq API limit
+            int poolSize = Math.min(Math.max(questionCount * 2, 10), 35);
 
             // Call Groq AI
             String questionPool = aiTeacherService.generateExamQuestions(topic, classLevel, poolSize);

@@ -160,7 +160,7 @@ public class AITeacherService {
             { "role": "user", "content": "%s" }
           ],
           "temperature": 0.8,
-          "max_tokens": 8000
+          "max_tokens": 4000
         }
         """.formatted(promptEn);
 
@@ -204,7 +204,7 @@ public class AITeacherService {
             { "role": "user", "content": "%s" }
           ],
           "temperature": 0.3,
-          "max_tokens": 8000
+          "max_tokens": 4000
         }
         """.formatted(translationPrompt);
 

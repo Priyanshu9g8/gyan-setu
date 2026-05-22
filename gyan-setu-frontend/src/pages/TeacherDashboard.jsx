@@ -955,7 +955,7 @@ export default function TeacherDashboard() {
                         <input
                             id="exam-qcount"
                             type="number"
-                            min={1} max={50}
+                            min={1} max={20}
                             value={examForm.questionCount}
                             onChange={e => setExamForm(f => ({ ...f, questionCount: Number(e.target.value) }))}
                             style={{
