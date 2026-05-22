@@ -24,7 +24,7 @@ public class Exam {
     private int timeLimitMinutes;
 
     /** Full AI-generated question pool stored as JSON string */
-    @Column(name = "question_pool", columnDefinition = "LONGTEXT", nullable = false)
+    @Column(name = "question_pool", columnDefinition = "TEXT", nullable = false)
     private String questionPool;
 
     /** ID of the teacher who created this exam — nullable so creation never fails */

@@ -23,8 +23,8 @@ public class ExamSubmission {
     @Column(name = "total_questions", nullable = false)
     private int totalQuestions;
 
-    /** Student's chosen answers + question snapshot as JSON */
-    @Column(name = "answers_json", columnDefinition = "LONGTEXT")
+    /** JSON string representing the student's selected answers */
+    @Column(name = "answers_json", columnDefinition = "TEXT")
     private String answersJson;
 
     @Column(name = "submitted_at", nullable = false)
