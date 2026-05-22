@@ -167,8 +167,10 @@ public class AITeacherService {
         String raw1 = postWithRetry(body1, 3);
 
         String englishJson = extractText(raw1).trim();
-        if (englishJson.startsWith("```")) {
-            englishJson = englishJson.replaceFirst("```[a-zA-Z]*\\n?", "").replaceAll("```$", "").trim();
+        int startEn = englishJson.indexOf('[');
+        int endEn = englishJson.lastIndexOf(']');
+        if (startEn != -1 && endEn != -1) {
+            englishJson = englishJson.substring(startEn, endEn + 1);
         }
 
         // ── Step 2: Translate English questions to Hindi + Punjabi ─────────────
@@ -210,8 +212,10 @@ public class AITeacherService {
         try {
             String raw2 = postWithRetry(body2, 3);
             translationJson = extractText(raw2).trim();
-            if (translationJson.startsWith("```")) {
-                translationJson = translationJson.replaceFirst("```[a-zA-Z]*\\n?", "").replaceAll("```$", "").trim();
+            int startTr = translationJson.indexOf('[');
+            int endTr = translationJson.lastIndexOf(']');
+            if (startTr != -1 && endTr != -1) {
+                translationJson = translationJson.substring(startTr, endTr + 1);
             }
         } catch (Exception ex) {
             System.err.println("[AITeacherService] Translation API call failed: " + ex.getMessage() + ". Falling back to English-only.");
