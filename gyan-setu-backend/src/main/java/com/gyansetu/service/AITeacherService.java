@@ -202,15 +202,20 @@ public class AITeacherService {
             { "role": "user", "content": "%s" }
           ],
           "temperature": 0.3,
-          "max_tokens": 10000
+          "max_tokens": 8000
         }
         """.formatted(translationPrompt);
 
-        String raw2 = postWithRetry(body2, 3);
-
-        String translationJson = extractText(raw2).trim();
-        if (translationJson.startsWith("```")) {
-            translationJson = translationJson.replaceFirst("```[a-zA-Z]*\\n?", "").replaceAll("```$", "").trim();
+        String translationJson;
+        try {
+            String raw2 = postWithRetry(body2, 3);
+            translationJson = extractText(raw2).trim();
+            if (translationJson.startsWith("```")) {
+                translationJson = translationJson.replaceFirst("```[a-zA-Z]*\\n?", "").replaceAll("```$", "").trim();
+            }
+        } catch (Exception ex) {
+            System.err.println("[AITeacherService] Translation API call failed: " + ex.getMessage() + ". Falling back to English-only.");
+            return englishJson;
         }
 
         // ── Step 3: Merge English + translations into final array ──────────────
