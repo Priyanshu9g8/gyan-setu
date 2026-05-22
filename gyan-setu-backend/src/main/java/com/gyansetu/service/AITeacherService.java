@@ -70,7 +70,7 @@ public class AITeacherService {
 
         String requestBody = """
         {
-          "model": "llama-3.3-70b-versatile",
+          "model": "llama-3.1-8b-instant",
           "messages": [
             {
               "role": "user",
@@ -151,7 +151,7 @@ public class AITeacherService {
 
         String body1 = """
         {
-          "model": "llama-3.3-70b-versatile",
+          "model": "llama-3.1-8b-instant",
           "messages": [
             {
               "role": "system",
@@ -195,7 +195,7 @@ public class AITeacherService {
 
         String body2 = """
         {
-          "model": "llama-3.3-70b-versatile",
+          "model": "llama-3.1-8b-instant",
           "messages": [
             {
               "role": "system",
