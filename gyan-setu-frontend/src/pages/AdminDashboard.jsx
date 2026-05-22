@@ -259,22 +259,22 @@ export default function AdminDashboard() {
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-brand-50">
-                        {teachers.map(t => (
-                          <tr key={t.id} className="hover:bg-brand-50/50 transition-colors">
+                        {teachers.map(teacher => (
+                          <tr key={teacher.id} className="hover:bg-brand-50/50 transition-colors">
                             <td className="py-3 px-2">
-                              <div className="font-semibold text-brand-800">{t.fullName}</div>
-                              <div className="text-xs text-brand-500">{t.email || '—'}</div>
+                              <div className="font-semibold text-brand-800">{teacher.fullName}</div>
+                              <div className="text-xs text-brand-500">{teacher.email || '—'}</div>
                             </td>
-                            <td className="py-3 px-2 text-sm text-brand-600">@{t.username}</td>
+                            <td className="py-3 px-2 text-sm text-brand-600">@{teacher.username}</td>
                             <td className="py-3 px-2">
-                              {t.classLevel
-                                ? <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-semibold">{t.classLevel.replace('CLASS_', 'Class ').replace('KG', 'KG')}</span>
+                              {teacher.classLevel
+                                ? <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-semibold">{teacher.classLevel.replace('CLASS_', 'Class ').replace('KG', 'KG')}</span>
                                 : <span className="text-xs text-brand-400 italic">{t("allClassesLabel")}</span>}
                             </td>
                             <td className="py-3 px-2">
                               <div className="flex gap-2">
-                                <button onClick={() => viewDetails(t.id)} className="text-xs px-3 py-1 text-brand-600 hover:bg-brand-100 rounded-lg transition-colors">{t("detailsBtn")}</button>
-                                <button onClick={() => deleteUser(t.id, t.fullName)} className="text-xs px-3 py-1 text-red-600 hover:bg-red-50 rounded-lg transition-colors">{t("deleteBtn")}</button>
+                                <button onClick={() => viewDetails(teacher.id)} className="text-xs px-3 py-1 text-brand-600 hover:bg-brand-100 rounded-lg transition-colors">{t("detailsBtn")}</button>
+                                <button onClick={() => deleteUser(teacher.id, teacher.fullName)} className="text-xs px-3 py-1 text-red-600 hover:bg-red-50 rounded-lg transition-colors">{t("deleteBtn")}</button>
                               </div>
                             </td>
                           </tr>
